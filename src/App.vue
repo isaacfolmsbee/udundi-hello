@@ -2,20 +2,32 @@
 import FacebookIcon from './components/icons/IconFacebook.vue'
 import InstagramIcon from './components/icons/IconInstagram.vue'
 import PlusIcon from './components/icons/IconPlus.vue'
+import { reactive } from 'vue';
+
+const state = reactive({ isDetailsOpen: false, isSlideEnabled: true });
+
+function toggleDetails() {
+	state.isDetailsOpen = !state.isDetailsOpen;
+	state.isSlideEnabled = false;
+}
 </script>
 
 <template>
 	<div class="header">
-		<h1 class="title">Explore</h1>
+		<h1
+			:class="[state.isSlideEnabled ? 'slide-in' : state.isDetailsOpen ? 'fade-right' : 'fade-left']"
+			class="title"
+			id="title"
+		>Explore</h1>
 		<div class="sub-header">
-			<PlusIcon class="icon ease-in" />
-			<h5 class="subtitle ease-in">More Details</h5>
+			<PlusIcon @click="toggleDetails" class="icon fade-in" />
+			<h5 class="subtitle fade-in">More Details</h5>
 		</div>
 	</div>
 	<div class="backdrop"></div>
 	<div class="social">
-		<FacebookIcon class="icon ease-in" />
-		<InstagramIcon class="icon ease-in" />
+		<FacebookIcon class="icon fade-in" />
+		<InstagramIcon class="icon fade-in" />
 	</div>
 </template>
 
@@ -38,8 +50,31 @@ import PlusIcon from './components/icons/IconPlus.vue'
 	font-size: 68px;
 	letter-spacing: 5px;
 	font-family: "Playfair Display", serif;
-	animation: slide-in ease 950ms;
-	animation-iteration-count: 1;
+	color: #ffffff;
+	background: linear-gradient(90deg, #ffffff00 63%, #ffffff 72%);
+	background-size: 400%;
+	-webkit-text-fill-color: transparent;
+	-webkit-background-clip: text;
+	background-clip: text;
+	background-position: 100%;
+}
+
+.slide-in {
+	animation: slide-in ease 950ms 1;
+}
+
+.fade-right {
+	animation: fade-out-text 1.2s ease 1;
+	-webkit-animation: fade-out-text 1.2s ease 1;
+	-moz-animation: fade-out-text 1.2s ease 1;
+	background-position: 0%;
+}
+
+.fade-left {
+	animation: fade-in-text 1s ease 1;
+	-webkit-animation: fade-in-text 1s ease 1;
+	-moz-animation: fade-in-text 1s ease 1;
+	background-position: 100%;
 }
 
 .subtitle {
@@ -79,7 +114,7 @@ import PlusIcon from './components/icons/IconPlus.vue'
 	filter: drop-shadow(2px 2px 3px rgb(0 0 0 / 0.5));
 }
 
-.ease-in {
+.fade-in {
 	animation: fade-in ease 1050ms;
 	animation-iteration-count: 1;
 }
@@ -99,6 +134,42 @@ import PlusIcon from './components/icons/IconPlus.vue'
 	}
 	100% {
 		transform: translateX(0px);
+	}
+}
+
+@keyframes fade-out-text {
+	0% {
+		background-position: 100% 100%;
+	}
+	100% {
+		background-position: 0% 100%;
+	}
+}
+
+@-webkit-keyframes fade-out-text {
+	0% {
+		background-position: 100% 100%;
+	}
+	100% {
+		background-position: 0% 100%;
+	}
+}
+
+@keyframes fade-in-text {
+	0% {
+		background-position: 0% 100%;
+	}
+	100% {
+		background-position: 100% 100%;
+	}
+}
+
+@-webkit-keyframes fade-in-text {
+	0% {
+		background-position: 0% 100%;
+	}
+	100% {
+		background-position: 100% 100%;
 	}
 }
 </style>

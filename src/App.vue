@@ -1,81 +1,104 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import FacebookIcon from './components/icons/IconFacebook.vue'
+import InstagramIcon from './components/icons/IconInstagram.vue'
+import PlusIcon from './components/icons/IconPlus.vue'
 </script>
 
 <template>
-	<header>
-		<img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-		<div class="wrapper">
-			<HelloWorld msg="You did it!" />
+	<div class="header">
+		<h1 class="title">Explore</h1>
+		<div class="sub-header">
+			<PlusIcon class="icon ease-in" />
+			<h5 class="subtitle ease-in">More Details</h5>
 		</div>
-	</header>
-
-	<main>
-		<TheWelcome />
-	</main>
+	</div>
+	<div class="backdrop"></div>
+	<div class="social">
+		<FacebookIcon class="icon ease-in" />
+		<InstagramIcon class="icon ease-in" />
+	</div>
 </template>
 
 <style>
 @import "./assets/base.css";
 
-#app {
-	max-width: 1280px;
-	margin: 0 auto;
-	padding: 2rem;
-
-	font-weight: normal;
+.header {
+	position: fixed;
+	bottom: 21%;
+	left: 5%;
+	z-index: 10;
 }
 
-header {
-	line-height: 1.5;
+.sub-header {
+	margin-left: 12px;
+	display: flex;
 }
 
-.logo {
-	display: block;
-	margin: 0 auto 2rem;
+.title {
+	font-size: 68px;
+	letter-spacing: 5px;
+	font-family: "Playfair Display", serif;
+	animation: slide-in ease 950ms;
+	animation-iteration-count: 1;
 }
 
-a,
-.green {
-	text-decoration: none;
-	color: hsla(160, 100%, 37%, 1);
-	transition: 0.4s;
+.subtitle {
+	margin: auto 0;
+	font-family: "Open Sans", sans-serif;
+	font-size: 14px;
+	margin-left: 6px;
 }
 
-@media (hover: hover) {
-	a:hover {
-		background-color: hsla(160, 100%, 37%, 0.2);
+.backdrop {
+	position: fixed;
+	width: 140vw;
+	height: 50vh;
+	top: 68vh;
+	right: 0;
+	transform: rotate(23deg);
+	background-color: #611818;
+}
+
+.social {
+	width: 120px;
+	height: 53px;
+	position: fixed;
+	bottom: 5%;
+	left: auto;
+	right: 6%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.icon {
+	cursor: pointer;
+}
+
+.social .icon {
+	filter: drop-shadow(2px 2px 3px rgb(0 0 0 / 0.5));
+}
+
+.ease-in {
+	animation: fade-in ease 1050ms;
+	animation-iteration-count: 1;
+}
+
+@keyframes fade-in {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
 	}
 }
 
-@media (min-width: 1024px) {
-	body {
-		display: flex;
-		place-items: center;
+@keyframes slide-in {
+	0% {
+		transform: translateX(40px);
 	}
-
-	#app {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		padding: 0 2rem;
-	}
-
-	header {
-		display: flex;
-		place-items: center;
-		padding-right: calc(var(--section-gap) / 2);
-	}
-
-	header .wrapper {
-		display: flex;
-		place-items: flex-start;
-		flex-wrap: wrap;
-	}
-
-	.logo {
-		margin: 0 2rem 0 0;
+	100% {
+		transform: translateX(0px);
 	}
 }
 </style>

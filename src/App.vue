@@ -7,9 +7,6 @@ import anime from 'animejs';
 
 const state = reactive({ isDetailsOpen: false, isSlideEnabled: true });
 
-const squarePath = "M61.5001 25.0003L118.835 3.2893C146.137 -7.04896 156.002 18.5942 159.783 58.9798C174.571 216.968 273.46 228.196 373.683 105.175L439 25.0003C505.169 138.299 509.944 277.274 451.707 394.847L439 420.5L372.044 443.935C292.414 471.806 205.65 471.626 126.136 443.425L61.5001 420.5L47.7309 396.641C-19.3639 280.38 -14.0139 135.978 61.5001 25.0003Z";
-const roundedPath = "M61.5001 46L118.835 24.289C202.742 -7.4835 295.334 -7.68557 379.379 23.7204L439 46C505.169 159.299 509.944 298.274 451.707 415.847L439 441.5L372.044 464.935C292.414 492.805 205.65 492.625 126.136 464.424L61.5001 441.5L47.7309 417.641C-19.3639 301.379 -14.0139 156.978 61.5001 46Z";
-
 function toggleDetails() {
 	state.isDetailsOpen = !state.isDetailsOpen;
 	state.isSlideEnabled = false;
@@ -21,29 +18,18 @@ function toggleDetails() {
 		anime({
 			targets: '#details-pane path',
 			d: [
+				{ value: roundedPath },
 				{ value: nearlySquarePath },
 				{ value: squarePath },
 
 			],
-			easing: 'linear',
-			delay: 250,
-			duration: 325,
-			loop: false
-		});
-	} else {
-		anime({
-			targets: '#details-pane path',
-			d: [
-				{ value: roundedPath },
-			],
-			easing: 'liner',
-			delay: 400,
-			duration: 0,
+			easing: 'cubicBezier(0.080, 0.165, 0.000, 0.550)',
+			delay: 80,
+			duration: 530,
 			loop: false
 		});
 	}
 }
-
 </script>
 
 <template>
@@ -68,6 +54,30 @@ function toggleDetails() {
 					fill="#FFFFFF"
 				/>
 			</svg>
+			<div class="details-container" :class="{ 'show-details': state.isDetailsOpen }">
+				<svg @click="toggleDetails" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path
+						d="M10.9591 8.92561L19.5575 0L21.7692 2.12599L13.1094 10.7331L22 19.358L19.6977 21.7877L11.225 13.0803L2.56813 22L0.189907 19.7059C3.11155 16.8074 5.95139 14.0091 8.87012 11.1283L0 2.4238L2.27888 0L10.9591 8.92561Z"
+						fill="#611818"
+					/>
+				</svg>
+				<h3>Explore</h3>
+				<hr />
+				<p class="info">
+					Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+					accusantium doloremque laudantium, totam rem aperiam, eaque
+					ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
+					dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas
+					sit aspernatur aut odit aut fugit, sed quia consequuntur magni
+					dolores eos qui ratione voluptatem sequi nesciunt. Neque porro
+					quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+					adipisci velit, sed quia non numquam eius modi tempora incidunt ut
+					labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad
+					minima veniam, quis nostrum exercitationem ullam corporis suscipit
+					laboriosam, nisi ut aliquid ex ea commodi consequatur?
+				</p>
+				<button class="button">READ MORE</button>
+			</div>
 			<PlusIcon
 				@click="toggleDetails"
 				:class="{ 'button-activate': state.isDetailsOpen }"
@@ -88,20 +98,46 @@ function toggleDetails() {
 
 .details-pane {
 	position: absolute;
+	z-index: 20;
 	left: 6px;
 	bottom: 10px;
 	height: 0px;
 	width: 0px;
 	transition: all 400ms ease;
-	transition-delay: 110ms;
+	-webkit-transition: all 400ms ease;
+	transition-delay: 173ms;
+	-webkit-transition-delay: 173ms;
 	max-width: 500px;
-	filter: drop-shadow(0px 0px 7px rgba(0, 0, 0, 0.301));
+	filter: drop-shadow(0px 0px 8px rgba(0, 0, 0, 0.644));
 }
 
 .open {
 	bottom: -30vh;
-	height: 100vh;
+	height: 95vh;
 	width: 114vw;
+}
+
+@media screen and (min-width: 648px) {
+	.open {
+		bottom: -200px;
+		height: 700px;
+		width: 500px;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.details-pane {
+		max-width: unset;
+		left: 20px;
+		bottom: 20px;
+	}
+
+	.open {
+		left: -50px;
+		bottom: -300px;
+		height: 950px;
+		width: 820px;
+	}
 }
 
 .header {
@@ -116,6 +152,13 @@ function toggleDetails() {
 	display: flex;
 }
 
+@media screen and (min-width: 1024px) {
+	.sub-header {
+		margin-top: -12px;
+		margin-left: 50px;
+	}
+}
+
 .title {
 	font-size: 68px;
 	letter-spacing: 5px;
@@ -127,6 +170,169 @@ function toggleDetails() {
 	-webkit-background-clip: text;
 	background-clip: text;
 	background-position: 100%;
+}
+
+@media screen and (min-width: 648px) {
+	.header {
+		left: 60px;
+	}
+
+	.title {
+		font-size: 128px;
+		letter-spacing: 5.6px;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.header {
+		left: 140px;
+	}
+
+	.title {
+		font-size: 224px;
+	}
+}
+
+.details-container {
+	visibility: hidden;
+	display: flex;
+	flex-direction: column;
+	opacity: 0;
+	transition: all ease 300ms;
+	-webkit-transition: all ease 300ms;
+	left: -4%;
+	z-index: 20;
+	position: absolute;
+	bottom: 0;
+	height: 65vh;
+	width: 84vw;
+	max-width: 360px;
+	padding: 20px 28px;
+}
+
+@media screen and (min-width: 648px) {
+	.details-container {
+		max-width: unset;
+		bottom: -30px;
+		height: 530px;
+		width: 370px;
+		padding: 20px 28px;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.details-container {
+		margin-left: -50px;
+		bottom: -60px;
+		height: 710px;
+		width: 580px;
+		padding: 62px 62px;
+	}
+}
+
+.show-details {
+	animation: reveal-details ease 800ms 1;
+	opacity: 100%;
+	left: 0%;
+	visibility: visible;
+}
+
+.details-container svg {
+	cursor: pointer;
+	position: absolute;
+	top: 2%;
+	right: 5.5%;
+	height: 19px;
+	width: 19px;
+}
+
+@media screen and (min-width: 1024px) {
+	.details-container svg {
+		top: 3.5%;
+		right: 4.5%;
+		height: 22px;
+		width: 22px;
+	}
+}
+
+.details-container h3 {
+	letter-spacing: 1.6px;
+	font-family: "Playfair Display", serif;
+	color: #611818;
+	font-size: 28px;
+	margin-bottom: 5px;
+}
+
+@media screen and (min-width: 648px) {
+	.details-container h3 {
+		font-size: 38px;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.details-container h3 {
+		font-size: 66px;
+	}
+}
+
+.details-container hr {
+	margin: 0;
+	height: 2px;
+	width: 65%;
+	background: transparent;
+	background-image: linear-gradient(to right, #611818, #61181800);
+	opacity: 100%;
+}
+
+@media screen and (min-width: 1024px) {
+	.details-container hr {
+		margin-top: 20px;
+	}
+}
+
+.details-container p {
+	margin-top: 14px;
+	margin-bottom: 8px;
+	letter-spacing: 0.3px;
+	line-height: 24px;
+	font-family: "Open Sans", sans-serif;
+	color: #505050;
+	font-size: 10px;
+}
+
+@media screen and (min-width: 648px) {
+	.details-container p {
+		letter-spacing: 0.3px;
+		line-height: 26px;
+		font-size: 11px;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.details-container p {
+		margin-top: 20px;
+		letter-spacing: 0.36px;
+		line-height: 30px;
+		font-size: 14px;
+	}
+}
+
+.details-container button {
+	padding: 6px 32px;
+	margin: auto auto auto 0;
+	font-family: "Open Sans", sans-serif;
+	color: white;
+	font-size: 14px;
+	border: 1px solid #979797;
+	background-image: linear-gradient(to right, #611818, #a36754);
+}
+
+@media screen and (min-width: 1024px) {
+	.details-container button {
+		padding: 14px 58px;
+		font-size: 18px;
+		letter-spacing: 1.7px;
+	}
 }
 
 .slide-in {
@@ -154,6 +360,22 @@ function toggleDetails() {
 	font-size: 14px;
 }
 
+@media screen and (min-width: 648px) {
+	.subtitle {
+		margin-top: 0px;
+		margin-left: 32px;
+		font-size: 18px;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.subtitle {
+		margin-left: 56px;
+		font-size: 25px;
+		letter-spacing: 0.63px;
+	}
+}
+
 .backdrop {
 	position: fixed;
 	width: 140vw;
@@ -162,6 +384,22 @@ function toggleDetails() {
 	right: 0;
 	transform: rotate(23deg);
 	background-color: #611818;
+}
+
+@media screen and (min-width: 648px) {
+	.backdrop {
+		width: 220px;
+		height: 100vh;
+		top: 0%;
+		left: 0%;
+		transform: rotate(180deg);
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.backdrop {
+		width: 413px;
+	}
 }
 
 .social {
@@ -176,12 +414,53 @@ function toggleDetails() {
 	justify-content: space-between;
 }
 
+@media screen and (min-width: 648px) {
+	.social {
+		width: 75px;
+		height: 120px;
+		position: fixed;
+		bottom: 3%;
+		right: 1%;
+		flex-direction: column;
+		justify-items: space-between;
+	}
+
+	.social .icon {
+		height: 52px;
+		width: 52px;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.social {
+		height: 160px;
+	}
+
+	.social .icon {
+		height: 68px;
+		width: 68px;
+	}
+}
+
 .icon {
 	cursor: pointer;
 }
 
 .plus-icon {
+	height: 24px;
+	width: 24px;
 	position: absolute;
+	transition: all ease 400ms;
+	transition-delay: 400ms;
+	opacity: 100;
+}
+
+@media screen and (min-width: 1024px) {
+	.plus-icon {
+		margin-top: -3px;
+		height: 43px;
+		width: 43px;
+	}
 }
 
 .social .icon {
@@ -189,16 +468,11 @@ function toggleDetails() {
 }
 
 .button-activate {
-	/* transition: all;
-	transition-duration: 340ms;
-	transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	height: 16px;
-	width: 16px;
-	margin-top: 4px;
-	margin-left: 4px; */
-	animation: push-button cubic-bezier(0.175, 0.885, 0.32, 1.275) 380ms;
+	animation: push-button ease-out 180ms; /** 380 */
 	animation-iteration-count: 1;
-	visibility: hidden;
+	transition-delay: 250ms;
+	transition-duration: 0ms;
+	opacity: 0;
 }
 
 @keyframes slide-in {
@@ -212,9 +486,6 @@ function toggleDetails() {
 
 @keyframes fade-out-text {
 	0% {
-		background-position: 100% 100%;
-	}
-	10% {
 		background-position: 100% 100%;
 	}
 	100% {
@@ -251,38 +522,91 @@ function toggleDetails() {
 
 @keyframes push-button {
 	0% {
-		visibility: visible;
-		height: 22px;
-		width: 22px;
-		margin-top: 0px;
-		margin-left: 0px;
+		height: 24px;
+		width: 24px;
 	}
-	95% {
-		height: 16px;
-		width: 16px;
-		margin-top: 4px;
-		margin-left: 4px;
+	60% {
+		height: 14px;
+		width: 14px;
 	}
 	100% {
-		visibility: hidden;
+		height: 19px;
+		width: 19px;
 	}
 }
 
 @-webkit-keyframes push-button {
 	0% {
-		height: 22px;
-		width: 22px;
-		margin-top: 0px;
-		margin-left: 0px;
+		height: 24px;
+		width: 24px;
 	}
-	90% {
-		height: 16px;
-		width: 16px;
-		margin-top: 4px;
-		margin-left: 4px;
+	60% {
+		height: 14px;
+		width: 14px;
 	}
 	100% {
-		height: 0px;
+		height: 19px;
+		width: 19px;
+	}
+}
+
+@keyframes push-button-large {
+	0% {
+		height: 43px;
+		width: 43px;
+	}
+	60% {
+		height: 24px;
+		width: 24px;
+	}
+	100% {
+		height: 35px;
+		width: 35px;
+	}
+}
+
+@-webkit-keyframes push-button-large {
+	0% {
+		height: 43px;
+		width: 43px;
+	}
+	60% {
+		height: 24px;
+		width: 24px;
+	}
+	100% {
+		height: 35px;
+		width: 35px;
+	}
+}
+
+@keyframes reveal-details {
+	0% {
+		opacity: 0;
+		left: -5%;
+	}
+	40% {
+		opacity: 0;
+		left: -5%;
+	}
+	100% {
+		opacity: 100;
+		left: 0%;
+	}
+}
+
+@-webkit-keyframes reveal-details {
+	0% {
+		opacity: 0;
+		left: -5%;
+	}
+	40% {
+		opacity: 0;
+		left: -5%;
+	}
+	100% {
+		opacity: 100;
+		left: 0%;
 	}
 }
 </style>

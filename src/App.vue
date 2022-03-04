@@ -71,15 +71,15 @@ function toggleDetails() {
 			<PlusIcon
 				@click="toggleDetails"
 				:class="{ 'button-activate': state.isDetailsOpen }"
-				class="icon plus-icon fade-in"
+				class="icon plus-icon"
 			/>
-			<h5 class="subtitle fade-in">More Details</h5>
+			<h5 class="subtitle">More Details</h5>
 		</div>
 	</div>
 	<div class="backdrop"></div>
 	<div class="social">
-		<FacebookIcon class="icon fade-in" />
-		<InstagramIcon class="icon fade-in" />
+		<FacebookIcon class="icon" />
+		<InstagramIcon class="icon" />
 	</div>
 </template>
 
@@ -93,13 +93,15 @@ function toggleDetails() {
 	height: 0px;
 	width: 0px;
 	transition: all 400ms ease;
-	transition-delay: 150ms;
+	transition-delay: 110ms;
+	max-width: 500px;
+	filter: drop-shadow(0px 0px 7px rgba(0, 0, 0, 0.301));
 }
 
 .open {
 	bottom: -30vh;
 	height: 100vh;
-	width: 110vw;
+	width: 114vw;
 }
 
 .header {
@@ -187,27 +189,16 @@ function toggleDetails() {
 }
 
 .button-activate {
-	transition: all;
+	/* transition: all;
 	transition-duration: 340ms;
 	transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	height: 16px;
 	width: 16px;
 	margin-top: 4px;
-	margin-left: 4px;
-}
-
-.fade-in {
-	animation: fade-in ease 1050ms;
+	margin-left: 4px; */
+	animation: push-button cubic-bezier(0.175, 0.885, 0.32, 1.275) 380ms;
 	animation-iteration-count: 1;
-}
-
-@keyframes fade-in {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
+	visibility: hidden;
 }
 
 @keyframes slide-in {
@@ -255,6 +246,43 @@ function toggleDetails() {
 	}
 	100% {
 		background-position: 100% 100%;
+	}
+}
+
+@keyframes push-button {
+	0% {
+		visibility: visible;
+		height: 22px;
+		width: 22px;
+		margin-top: 0px;
+		margin-left: 0px;
+	}
+	95% {
+		height: 16px;
+		width: 16px;
+		margin-top: 4px;
+		margin-left: 4px;
+	}
+	100% {
+		visibility: hidden;
+	}
+}
+
+@-webkit-keyframes push-button {
+	0% {
+		height: 22px;
+		width: 22px;
+		margin-top: 0px;
+		margin-left: 0px;
+	}
+	90% {
+		height: 16px;
+		width: 16px;
+		margin-top: 4px;
+		margin-left: 4px;
+	}
+	100% {
+		height: 0px;
 	}
 }
 </style>

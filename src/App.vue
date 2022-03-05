@@ -96,6 +96,7 @@ function toggleDetails() {
 
 <style lang="scss">
 @import "./assets/base.css";
+@import "./assets/animations.css";
 
 $autumn-red: #611818;
 
@@ -109,8 +110,8 @@ $autumn-red: #611818;
 		font-size: 68px;
 		letter-spacing: 5px;
 		font-family: "Playfair Display", serif;
-		color: #ffffff;
-		background: linear-gradient(90deg, #ffffff00 63%, #ffffff 72%);
+		color: white;
+		background: linear-gradient(90deg, #ffffff00 63%, white 72%);
 		background-size: 400%;
 		-webkit-text-fill-color: transparent;
 		-webkit-background-clip: text;
@@ -241,9 +242,9 @@ $autumn-red: #611818;
 		}
 
 		.button-activate {
-			animation: push-button ease-out 180ms; /** 380 */
+			animation: push-button ease-out 195ms; /** 380 */
 			animation-iteration-count: 1;
-			transition-delay: 250ms;
+			transition-delay: 195ms;
 			transition-duration: 0ms;
 			opacity: 0;
 		}
@@ -414,6 +415,10 @@ $autumn-red: #611818;
 				}
 			}
 
+			.button-activate {
+				animation: push-button-large ease-out 200ms;
+			}
+
 			.plus-icon {
 				margin-top: -3px;
 				height: 43px;
@@ -439,141 +444,6 @@ $autumn-red: #611818;
 			height: 68px;
 			width: 68px;
 		}
-	}
-}
-
-@keyframes slide-in {
-	0% {
-		transform: translateX(40px);
-	}
-	100% {
-		transform: translateX(0px);
-	}
-}
-
-@keyframes fade-out-text {
-	0% {
-		background-position: 100% 100%;
-	}
-	100% {
-		background-position: 0% 100%;
-	}
-}
-
-@-webkit-keyframes fade-out-text {
-	0% {
-		background-position: 100% 100%;
-	}
-	100% {
-		background-position: 0% 100%;
-	}
-}
-
-@keyframes fade-in-text {
-	0% {
-		background-position: 0% 100%;
-	}
-	100% {
-		background-position: 100% 100%;
-	}
-}
-
-@-webkit-keyframes fade-in-text {
-	0% {
-		background-position: 0% 100%;
-	}
-	100% {
-		background-position: 100% 100%;
-	}
-}
-
-@keyframes push-button {
-	0% {
-		height: 24px;
-		width: 24px;
-	}
-	60% {
-		height: 14px;
-		width: 14px;
-	}
-	100% {
-		height: 19px;
-		width: 19px;
-	}
-}
-
-@-webkit-keyframes push-button {
-	0% {
-		height: 24px;
-		width: 24px;
-	}
-	60% {
-		height: 14px;
-		width: 14px;
-	}
-	100% {
-		height: 19px;
-		width: 19px;
-	}
-}
-
-@keyframes push-button-large {
-	0% {
-		height: 43px;
-		width: 43px;
-	}
-	60% {
-		height: 24px;
-		width: 24px;
-	}
-	100% {
-		height: 35px;
-		width: 35px;
-	}
-}
-
-@-webkit-keyframes push-button-large {
-	0% {
-		height: 43px;
-		width: 43px;
-	}
-	60% {
-		height: 24px;
-		width: 24px;
-	}
-	100% {
-		height: 35px;
-		width: 35px;
-	}
-}
-
-@keyframes reveal-details {
-	0% {
-		opacity: 0;
-		left: -5%;
-	}
-	40% {
-		opacity: 0;
-		left: -5%;
-	}
-	100% {
-		opacity: 100;
-		left: 0%;
-	}
-}
-
-@-webkit-keyframes reveal-details {
-	0% {
-		opacity: 0;
-		left: -5%;
-	}
-	40% {
-		opacity: 0;
-		left: -5%;
-	}
-	100% {
-		opacity: 100;
-		left: 0%;
 	}
 }
 </style>

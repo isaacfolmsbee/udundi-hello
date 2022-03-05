@@ -115,23 +115,29 @@ $autumn-red: #611818;
 		background-size: 400%;
 		-webkit-text-fill-color: transparent;
 		-webkit-background-clip: text;
+		-moz-background-clip: text;
 		background-clip: text;
 		background-position: 100%;
 	}
 
 	.slide-in {
 		animation: slide-in ease 950ms 1;
+		-o-animation: slide-in ease 950ms 1;
+		-moz-animation: slide-in ease 950ms 1;
+		-webkit-animation: slide-in ease 950ms 1;
 	}
 
 	.fade-right {
 		animation: fade-out-text 1.3s ease 1;
-		-webkit-animation: fade-out-text 1.3s ease 1;
+		-o-animation: fade-out-text 1.3s ease 1;
 		-moz-animation: fade-out-text 1.3s ease 1;
+		-webkit-animation: fade-out-text 1.3s ease 1;
 		background-position: 0%;
 	}
 
 	.fade-left {
 		animation: fade-in-text 1s ease 1;
+		-o-animation: fade-in-text 1s ease 1;
 		-webkit-animation: fade-in-text 1s ease 1;
 		-moz-animation: fade-in-text 1s ease 1;
 		background-position: 100%;
@@ -149,8 +155,12 @@ $autumn-red: #611818;
 			height: 0px;
 			width: 0px;
 			transition: all 400ms ease;
+			-o-transition: all 400ms ease;
+			-moz-transition: all 400ms ease;
 			-webkit-transition: all 400ms ease;
 			transition-delay: 173ms;
+			-o-transition-delay: 173ms;
+			-moz-transition-delay: 173ms;
 			-webkit-transition-delay: 173ms;
 			max-width: 500px;
 			filter: drop-shadow(0px 0px 8px rgba(0, 0, 0, 0.644));
@@ -168,6 +178,8 @@ $autumn-red: #611818;
 			flex-direction: column;
 			opacity: 0;
 			transition: all ease 300ms;
+			-o-transition: all ease 300ms;
+			-moz-transition: all ease 300ms;
 			-webkit-transition: all ease 300ms;
 			left: -4%;
 			z-index: 20;
@@ -227,6 +239,9 @@ $autumn-red: #611818;
 
 		.show-details {
 			animation: reveal-details ease 800ms 1;
+			-o-animation: reveal-details ease 800ms 1;
+			-moz-animation: reveal-details ease 800ms 1;
+			-webkit-animation: reveal-details ease 800ms 1;
 			opacity: 100%;
 			left: 0%;
 			visibility: visible;
@@ -242,10 +257,18 @@ $autumn-red: #611818;
 		}
 
 		.button-activate {
-			animation: push-button ease-out 195ms; /** 380 */
-			animation-iteration-count: 1;
+			animation: push-button ease-out 195ms 1;
+			-o-animation: push-button ease-out 195ms 1;
+			-moz-animation: push-button ease-out 195ms 1;
+			-webkit-animation: push-button ease-out 195ms 1;
 			transition-delay: 195ms;
+			-o-transition-delay: 195ms;
+			-moz-transition-delay: 195ms;
+			-webkit-transition-delay: 195ms;
 			transition-duration: 0ms;
+			-o-transition-duration: 0ms;
+			-moz-transition-duration: 0ms;
+			-webkit-transition-duration: 0ms;
 			opacity: 0;
 		}
 
@@ -417,6 +440,9 @@ $autumn-red: #611818;
 
 			.button-activate {
 				animation: push-button-large ease-out 200ms;
+				-o-animation: push-button-large ease-out 200ms;
+				-moz-animation: push-button-large ease-out 200ms;
+				-webkit-animation: push-button-large ease-out 200ms;
 			}
 
 			.plus-icon {

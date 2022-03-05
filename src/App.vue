@@ -2,6 +2,7 @@
 import FacebookIcon from './components/icons/IconFacebook.vue'
 import InstagramIcon from './components/icons/IconInstagram.vue'
 import PlusIcon from './components/icons/IconPlus.vue'
+import CloseIcon from './components/icons/IconClose.vue'
 import { reactive } from 'vue';
 import anime from 'animejs';
 
@@ -56,12 +57,7 @@ function toggleDetails() {
 				/>
 			</svg>
 			<div class="details-container" :class="{ 'show-details': state.isDetailsOpen }">
-				<svg @click="toggleDetails" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path
-						d="M10.9591 8.92561L19.5575 0L21.7692 2.12599L13.1094 10.7331L22 19.358L19.6977 21.7877L11.225 13.0803L2.56813 22L0.189907 19.7059C3.11155 16.8074 5.95139 14.0091 8.87012 11.1283L0 2.4238L2.27888 0L10.9591 8.92561Z"
-						fill="#611818"
-					/>
-				</svg>
+				<CloseIcon @click="toggleDetails" class="close" />
 				<h3>Explore</h3>
 				<hr />
 				<p class="info">
@@ -167,8 +163,8 @@ $autumn-red: #611818;
 		}
 
 		.open {
-			bottom: -30vh;
-			height: 95vh;
+			bottom: -190px;
+			height: 600px;
 			width: 114vw;
 		}
 
@@ -184,13 +180,13 @@ $autumn-red: #611818;
 			left: -4%;
 			z-index: 20;
 			position: absolute;
-			bottom: 0;
-			height: 65vh;
+			bottom: -50px;
+			height: 460px;
 			width: 84vw;
-			max-width: 360px;
+			max-width: 365px;
 			padding: 20px 28px;
 
-			svg {
+			.close {
 				cursor: pointer;
 				position: absolute;
 				top: 2%;
@@ -211,7 +207,6 @@ $autumn-red: #611818;
 				margin: 0;
 				height: 2px;
 				width: 65%;
-				background: transparent;
 				background-image: linear-gradient(to right, $autumn-red, #61181800);
 				opacity: 100%;
 			}
@@ -220,6 +215,8 @@ $autumn-red: #611818;
 				margin-top: 14px;
 				margin-bottom: 8px;
 				letter-spacing: 0.3px;
+				max-height: 300px;
+				overflow-y: auto;
 				line-height: 24px;
 				font-family: "Open Sans", sans-serif;
 				color: #505050;
@@ -335,6 +332,7 @@ $autumn-red: #611818;
 				padding: 20px 28px;
 
 				p {
+					max-height: unset;
 					letter-spacing: 0.3px;
 					line-height: 26px;
 					font-size: 11px;
@@ -430,7 +428,7 @@ $autumn-red: #611818;
 					font-size: 66px;
 				}
 
-				svg {
+				.close {
 					top: 3.5%;
 					right: 4.5%;
 					height: 22px;

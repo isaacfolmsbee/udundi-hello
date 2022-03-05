@@ -41,7 +41,7 @@ function toggleDetails() {
 			class="title"
 			id="title"
 		>Explore</h1>
-		<div class="sub-header">
+		<div class="sub-header d-flex">
 			<svg
 				id="details-pane"
 				class="details-pane"
@@ -56,7 +56,10 @@ function toggleDetails() {
 					fill="#FFFFFF"
 				/>
 			</svg>
-			<div class="details-container" :class="{ 'show-details': state.isDetailsOpen }">
+			<div
+				class="details-container d-flex flex-column"
+				:class="{ 'show-details': state.isDetailsOpen }"
+			>
 				<CloseIcon @click="toggleDetails" class="close" />
 				<h3>Explore</h3>
 				<hr />
@@ -73,7 +76,7 @@ function toggleDetails() {
 					minima veniam, quis nostrum exercitationem ullam corporis suscipit
 					laboriosam, nisi ut aliquid ex ea commodi consequatur?
 				</p>
-				<button class="button">READ MORE</button>
+				<button class="button border border-1">READ MORE</button>
 			</div>
 			<PlusIcon
 				@click="toggleDetails"
@@ -84,7 +87,7 @@ function toggleDetails() {
 		</div>
 	</div>
 	<div class="backdrop"></div>
-	<div class="social">
+	<div class="social d-flex align-items-center justify-content-between">
 		<FacebookIcon class="icon" />
 		<InstagramIcon class="icon" />
 	</div>
@@ -141,7 +144,6 @@ $autumn-red: #611818;
 
 	.sub-header {
 		margin-left: 12px;
-		display: flex;
 
 		.details-pane {
 			position: absolute;
@@ -170,8 +172,6 @@ $autumn-red: #611818;
 
 		.details-container {
 			visibility: hidden;
-			display: flex;
-			flex-direction: column;
 			opacity: 0;
 			transition: all ease 300ms;
 			-o-transition: all ease 300ms;
@@ -229,7 +229,7 @@ $autumn-red: #611818;
 				font-family: "Open Sans", sans-serif;
 				color: white;
 				font-size: 14px;
-				border: 1px solid #979797;
+				border-color: #979797;
 				background-image: linear-gradient(to right, $autumn-red, #a36754);
 			}
 		}
@@ -295,9 +295,6 @@ $autumn-red: #611818;
 	bottom: 5%;
 	left: auto;
 	right: 6%;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
 
 	.icon {
 		filter: drop-shadow(2px 2px 3px rgb(0 0 0 / 0.5));
